@@ -1754,75 +1754,6 @@ public abstract class RepositoryConnectionTest {
 		assertThat(size(g2)).isEqualTo(1);
 	}
 
-	@Test
-	public void testRdfStarSparql() throws InterruptedException {
-
-		if (!rdfStartSupport()) {
-			logger.info("Test skipped due to lack of support for RDF*");
-			return;
-		}
-
-		Triple insertedTriple = vf.createTriple(RDF.SUBJECT, RDF.PREDICATE, RDF.OBJECT);
-		Literal literal = vf.createLiteral("I am a triple ;-D");
-
-		testCon.begin();
-		testCon.add(insertedTriple, RDF.TYPE, literal);
-
-		assertTrue(testCon.prepareBooleanQuery("ASK { ?t a 'I am a triple ;-D'}").evaluate());
-		assertEquals(1, testCon.prepareTupleQuery(
-				"SELECT * WHERE { << <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> >> ?a ?b}")
-				.evaluate()
-				.stream()
-				.count());
-		testCon.commit();
-	}
-
-	@Test
-	public void testRdfStarSparqlSeperateTransaction() throws InterruptedException {
-
-		if (!rdfStartSupport()) {
-			logger.info("Test skipped due to lack of support for RDF*");
-			return;
-		}
-
-		Triple insertedTriple = vf.createTriple(RDF.SUBJECT, RDF.PREDICATE, RDF.OBJECT);
-		Literal literal = vf.createLiteral("I am a triple ;-D");
-		testCon.begin();
-
-		testCon.add(insertedTriple, RDF.TYPE, literal);
-		testCon.commit();
-		testCon.begin();
-		assertTrue(testCon.prepareBooleanQuery("ASK { ?t a 'I am a triple ;-D'}").evaluate());
-		assertEquals(1, testCon.prepareTupleQuery(
-				"SELECT * WHERE { << <http://www.w3.org/1999/02/22-rdf-syntax-ns#subject> <http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate> <http://www.w3.org/1999/02/22-rdf-syntax-ns#object> >> ?a ?b}")
-				.evaluate()
-				.stream()
-				.count());
-		testCon.commit();
-
-	}
-
-	@Test
-	public void testRdfStar() throws InterruptedException {
-
-		if (!rdfStartSupport()) {
-			logger.info("Test skipped due to lack of support for RDF*");
-			return;
-		}
-
-		Triple insertedTriple = vf.createTriple(RDF.SUBJECT, RDF.PREDICATE, RDF.OBJECT);
-		Triple copyOfInsertedTriple = vf.createTriple(RDF.SUBJECT, RDF.PREDICATE, RDF.OBJECT);
-		Literal literal = vf.createLiteral("I am a triple ;-D");
-		testCon.begin();
-
-		testCon.add(insertedTriple, RDF.TYPE, literal);
-
-		assertEquals(1, testCon.getStatements(null, RDF.TYPE, literal, false).stream().count());
-		assertEquals(1, testCon.getStatements(copyOfInsertedTriple, null, null, false).stream().count());
-		testCon.commit();
-
-	}
-
 	private int size(IRI defaultGraph) throws RepositoryException, MalformedQueryException, QueryEvaluationException {
 		TupleQuery qry = testCon.prepareTupleQuery(QueryLanguage.SPARQL, "SELECT * { ?s ?p ?o }");
 		SimpleDataset dataset = new SimpleDataset();
@@ -1859,5 +1790,4 @@ public abstract class RepositoryConnectionTest {
 		}
 	}
 
-	abstract public boolean rdfStartSupport();
 }

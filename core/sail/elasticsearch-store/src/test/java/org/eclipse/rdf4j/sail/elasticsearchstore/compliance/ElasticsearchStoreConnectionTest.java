@@ -67,8 +67,4 @@ public class ElasticsearchStoreConnectionTest extends RepositoryConnectionTest {
 				new ElasticsearchStore(clientPool, "index1"));
 	}
 
-	@Override
-	public boolean rdfStartSupport() {
-		return false;
-	}
 }

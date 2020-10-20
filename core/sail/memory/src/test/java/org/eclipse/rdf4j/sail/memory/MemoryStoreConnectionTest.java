@@ -23,9 +23,4 @@ public class MemoryStoreConnectionTest extends RepositoryConnectionTest {
 		return new SailRepository(new MemoryStore());
 	}
 
-	@Override
-	public boolean rdfStartSupport() {
-		return true;
-	}
-
 }

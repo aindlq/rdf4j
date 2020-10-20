@@ -34,8 +34,4 @@ public class CustomGraphQueryInferencerRepositoryConnectionTest extends Reposito
 				ResourceUtil.getString("/custom-query-inferencing/match.rq")));
 	}
 
-	@Override
-	public boolean rdfStartSupport() {
-		return false;
-	}
 }

@@ -38,11 +38,6 @@ public class NativeStoreConnectionTest extends RepositoryConnectionTest {
 	}
 
 	@Override
-	public boolean rdfStartSupport() {
-		return false;
-	}
-
-	@Override
 	public void tearDown() throws Exception {
 		try {
 			super.tearDown();

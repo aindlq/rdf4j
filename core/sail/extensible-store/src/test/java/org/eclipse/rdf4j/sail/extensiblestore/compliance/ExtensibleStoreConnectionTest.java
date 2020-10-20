@@ -35,9 +35,4 @@ public class ExtensibleStoreConnectionTest extends RepositoryConnectionTest {
 		return new SailRepository(new ExtensibleStoreImplForTests());
 	}
 
-	@Override
-	public boolean rdfStartSupport() {
-		return false;
-	}
-
 }

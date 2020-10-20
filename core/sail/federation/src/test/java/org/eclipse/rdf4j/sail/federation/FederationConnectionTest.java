@@ -41,8 +41,4 @@ public class FederationConnectionTest extends RepositoryConnectionTest {
 		return new SailRepository(sail);
 	}
 
-	@Override
-	public boolean rdfStartSupport() {
-		return false;
-	}
 }

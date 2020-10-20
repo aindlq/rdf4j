@@ -28,9 +28,4 @@ public class ShaclRepositoryConnectionTest extends RepositoryConnectionTest {
 		return new SailRepository(shaclSail);
 	}
 
-	@Override
-	public boolean rdfStartSupport() {
-		return true;
-	}
-
 }
