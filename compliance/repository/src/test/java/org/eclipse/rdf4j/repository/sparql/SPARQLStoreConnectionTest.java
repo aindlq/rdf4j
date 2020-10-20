@@ -102,6 +102,11 @@ public class SPARQLStoreConnectionTest extends RepositoryConnectionTest {
 	}
 
 	@Override
+	public boolean rdfStartSupport() {
+		return false;
+	}
+
+	@Override
 	@Ignore("relies on pending updates being visible in own connection")
 	public void testSizeRollback() throws Exception {
 		System.err.println("temporarily disabled testSizeRollback() for SPARQLRepository");

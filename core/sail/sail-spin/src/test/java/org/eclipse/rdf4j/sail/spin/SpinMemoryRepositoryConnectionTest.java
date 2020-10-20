@@ -32,4 +32,9 @@ public class SpinMemoryRepositoryConnectionTest extends RepositoryConnectionTest
 		return new SailRepository(new SpinSail(new MemoryStore()));
 	}
 
+	@Override
+	public boolean rdfStartSupport() {
+		return true;
+	}
+
 }

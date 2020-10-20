@@ -45,6 +45,11 @@ public class LimitedSizeNativeStoreConnectionTest extends RepositoryConnectionTe
 	}
 
 	@Override
+	public boolean rdfStartSupport() {
+		return false;
+	}
+
+	@Override
 	public void tearDown() throws Exception {
 		try {
 			super.tearDown();

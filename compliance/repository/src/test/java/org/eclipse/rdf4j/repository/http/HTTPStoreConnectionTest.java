@@ -110,4 +110,9 @@ public class HTTPStoreConnectionTest extends RepositoryConnectionTest {
 		System.err.println("SES-1833: temporarily disabled testAddMalformedLiteralsStrictConfig() for HTTPRepository");
 	}
 
+	@Override
+	public boolean rdfStartSupport() {
+		return false;
+	}
+
 }

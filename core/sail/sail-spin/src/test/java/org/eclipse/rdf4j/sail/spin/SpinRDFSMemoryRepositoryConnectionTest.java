@@ -34,4 +34,9 @@ public class SpinRDFSMemoryRepositoryConnectionTest extends RepositoryConnection
 		return new SailRepository(
 				new SpinSail(new SchemaCachingRDFSInferencer(new DedupingInferencer(new MemoryStore()), false)));
 	}
+
+	@Override
+	public boolean rdfStartSupport() {
+		return true;
+	}
 }
